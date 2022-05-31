@@ -1,15 +1,32 @@
-package br.com.aragy.Iterator;
+package br.com.iterator.pattern;
 
 public class CollectionofAges implements Container {
+	
+	public int age[]= {21, 38, 46, 967, 99};
 
-	public int age[] = { 21, 38, 46, 967, 99 };
-	public String address[] = { "Céu", "Coordenação", "ProReitoria", "Trabalho", "Campo Grande" };
-	public String designation[] = { "Java Programmer and Content Writer", "CEO", 
-			"Professorora", "Manager","Escola/Faculdade" };
 	@Override
 	public Iterator getIterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new CollectionofAgesIterate();
 	}
+	
+	private class CollectionofAgesIterate implements Iterator {
+		
+		int i;
+		
+		public boolean hasNext() {
+			if (i < age.length) {
+				return true;
+			}
+			return false;
+		}
 
+		@Override
+		public Object next() {
+			if (this.hasNext()) {
+				return age[i++];
+			}			
+			return null;
+		}	
+	}
 }
+
